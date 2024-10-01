@@ -1,0 +1,55 @@
+# Fichiers système
+.DS_Store
+Thumbs.db
+
+# Dépendances Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+pnpm-debug.log
+
+# Dépendances Python
+__pycache__/
+*.py[cod]
+*.pyo
+venv/
+env/
+.Python
+*.env
+
+# Logs et fichiers temporaires
+*.log
+*.tmp
+*.lock
+
+# Fichiers de configuration d'éditeurs
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# Fichiers de compilation
+dist/
+build/
+out/
+
+# Fichiers de tests unitaires et de couverture
+coverage/
+*.cover
+*.testresult
+*.nunit
+*.trx
+*.junit
+
+# Fichiers spécifiques au système d'exploitation
+*.swp
+*.swo
+*.bak
+*~
+
+# Fichiers de configuration personnels
+.env
+.env.local
+.env.*.local
