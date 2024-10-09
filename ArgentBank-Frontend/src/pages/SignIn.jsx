@@ -1,18 +1,32 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { login } from "../api/api";
+import { useDispatch, useSelector } from "react-redux"; // Importer useSelector
+import { login as apiLogin } from "../api/api";
+import { login } from "../redux/slices/authSlice";
 
 const SignIn = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [rememberMe, setRememberMe] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  // Récupérer l'état d'authentification depuis Redux
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+
+  // Vérifie si l'utilisateur est déjà authentifié et redirige vers /user
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate("/user"); // Redirige si l'utilisateur est authentifié
+    }
+  }, [isAuthenticated, navigate]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await login(username, password);
-      console.log("Login successful");
-      navigate("/user");
+      const token = await apiLogin(username, password);
+      dispatch(login({ user: { username }, token, rememberMe }));
+      navigate("/user"); // Redirige vers /user après une connexion réussie
     } catch (error) {
       console.error("Login failed", error);
     }
@@ -43,7 +57,12 @@ const SignIn = () => {
             />
           </div>
           <div className="input-remember">
-            <input type="checkbox" id="remember-me" />
+            <input
+              type="checkbox"
+              id="remember-me"
+              checked={rememberMe}
+              onChange={(e) => setRememberMe(e.target.checked)}
+            />
             <label htmlFor="remember-me">Remember me</label>
           </div>
           <button className="sign-in-button" type="submit">
