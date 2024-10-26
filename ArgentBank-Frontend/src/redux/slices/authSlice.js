@@ -19,9 +19,9 @@ const authSlice = createSlice({
 
       // Stocke le token selon le choix "Remember me"
       if (rememberMe) {
-        sessionStorage.setItem("token", token);
-      } else {
         localStorage.setItem("token", token);
+      } else {
+        sessionStorage.setItem("token", token);
       }
     },
     logout: (state) => {

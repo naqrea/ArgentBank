@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Account from "../components/Account";
 import { useDispatch, useSelector } from "react-redux";
 import { updateProfile } from "../redux/slices/profileSlice";
-import { updateProfileApi, getProfile } from "../api/api"; // Importer la fonction pour récupérer le profil
+import { updateProfileApi, getProfile } from "../api/api";
 
 const User = () => {
   const dispatch = useDispatch();
@@ -20,7 +20,7 @@ const User = () => {
   const handleSave = async () => {
     try {
       // Appel à l'API pour mettre à jour le User Name
-      const updatedProfile = await updateProfileApi(userName); // Assure-toi que cette fonction renvoie l'objet complet du profil
+      const updatedProfile = await updateProfileApi(userName);
       dispatch(updateProfile(updatedProfile)); // Envoie le profil complet
       setIsEditing(false); // Fermer le formulaire après sauvegarde
     } catch (error) {
@@ -51,7 +51,7 @@ const User = () => {
   return (
     <main className="main bg-dark">
       <div className="header">
-        <h1>
+        <h1 className="welcome">
           Welcome back
           <br />
           {profile ? `${profile.firstName} ${profile.lastName}` : "User"}!
@@ -67,7 +67,7 @@ const User = () => {
               <input
                 type="text"
                 id="userName"
-                value={userName} // Utiliser userName ici
+                value={userName}
                 onChange={(e) => setUserName(e.target.value)}
               />
             </div>
@@ -76,8 +76,8 @@ const User = () => {
               <input
                 type="text"
                 id="firstName"
-                value={profile.firstName} // Afficher le firstName
-                disabled // Rendre le champ disabled
+                value={profile.firstName}
+                disabled
               />
             </div>
             <div className="input-wrapper">

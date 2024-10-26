@@ -443,3 +443,8 @@ html {
 .edit-form-buttons button {
   width: 7rem;
 }
+
+.welcome {
+  font-size: 1.5rem;
+  margin: 1rem 0;
+}
