@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateProfile } from "../redux/slices/profileSlice";
 import { updateProfileApi, getProfile } from "../api/api";
 
-const User = () => {
+const Profile = () => {
   const dispatch = useDispatch();
   const profile = useSelector((state) => state.profile.profile); // Récupérer le profil depuis le store
   const token = useSelector((state) => state.auth.token); // Récupérer le token depuis le store d'authentification
@@ -109,9 +109,11 @@ const User = () => {
         )}
       </div>
       <h2 className="sr-only">Accounts</h2>
-      <Account />
+      <Account bankCheck="x3448" amount="$48,098.43" />
+      <Account bankCheck="x3448" amount="$47,800.51" />
+      <Account bankCheck="x3448" amount="$27,226.13" />
     </main>
   );
 };
 
-export default User;
+export default Profile;

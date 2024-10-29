@@ -10,6 +10,7 @@ const SignIn = () => {
   const [rememberMe, setRememberMe] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const errorTag = document.querySelector(".error");
 
   // Récupérer l'état d'authentification depuis Redux
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
@@ -17,7 +18,7 @@ const SignIn = () => {
   // Vérifie si l'utilisateur est déjà authentifié et redirige vers /user
   useEffect(() => {
     if (isAuthenticated) {
-      navigate("/user"); // Redirige si l'utilisateur est authentifié
+      navigate("/profile"); // Redirige si l'utilisateur est authentifié
     }
   }, [isAuthenticated, navigate]);
 
@@ -26,9 +27,10 @@ const SignIn = () => {
     try {
       const token = await apiLogin(username, password);
       dispatch(login({ user: { username }, token, rememberMe }));
-      navigate("/user"); // Redirige vers /user après une connexion réussie
+      navigate("/profile"); // Redirige vers /profile après une connexion réussie
     } catch (error) {
       console.error("Login failed", error);
+      errorTag.style.display = "block";
     }
   };
 
@@ -68,6 +70,7 @@ const SignIn = () => {
           <button className="sign-in-button" type="submit">
             Sign In
           </button>
+          <span className="error">Error: invalid fields</span>
         </form>
       </section>
     </main>

@@ -2,7 +2,6 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   isAuthenticated: false,
-  user: null,
   token: null,
 };
 
@@ -11,10 +10,9 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     login: (state, action) => {
-      const { user, token, rememberMe } = action.payload;
+      const { token, rememberMe } = action.payload;
 
       state.isAuthenticated = true;
-      state.user = user;
       state.token = token;
 
       // Stocke le token selon le choix "Remember me"
@@ -26,7 +24,6 @@ const authSlice = createSlice({
     },
     logout: (state) => {
       state.isAuthenticated = false;
-      state.user = null;
       state.token = null;
 
       // Nettoie le stockage

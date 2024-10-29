@@ -14,7 +14,7 @@ const profileSlice = createSlice({
     updateProfile: (state, action) => {
       state.profile = {
         ...state.profile,
-        ...action.payload, // Met à jour l'ensemble du profil
+        ...action.payload, // Fusionne les données du profil existant avec les nouvelles données
       };
     },
   },

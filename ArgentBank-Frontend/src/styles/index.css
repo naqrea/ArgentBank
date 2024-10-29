@@ -198,7 +198,7 @@ html {
 }
 
 .hero {
-  background-image: url("../img/bank-tree.jpeg");
+  background-image: url("../img/bank-tree.webp");
   background-position: 0 -50px;
   background-size: cover;
   background-repeat: no-repeat;
@@ -447,4 +447,10 @@ html {
 .welcome {
   font-size: 1.5rem;
   margin: 1rem 0;
+}
+
+.error {
+  color: red;
+  display: none;
+  padding-top: 1rem;
 }
